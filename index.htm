@@ -25,8 +25,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY29sbGFicHJvamVjdDE5MDgiLCJhIjoiY2p0ZWdwMjl1M
 var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11',
-center: [-100.04, 38.907],
-zoom: 3
+center: [-66.641770,45.967761],
+zoom: 12
 });
  
 map.on('load', function () {
@@ -35,8 +35,8 @@ map.addLayer({
 'id': 'states-layer',
 'type': 'fill',
 'source': {
-'type': 'json',
-'data': 'https://collabproject1908.github.io/collabproject1908.github.io/federiction_bf.json'
+'type': 'geojson',
+'data': 'https://collabproject1908.github.io/collabproject1908.github.io/map.geojson'
 },
 'paint': {
 'fill-color': 'rgba(200, 100, 240, 0.4)',
