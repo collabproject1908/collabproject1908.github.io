@@ -194,10 +194,12 @@ h2 {
 
 #toggle-menu a:hover {
     background-color: #f8f8f8;
+    color: #404040;
 }
 
-#toggle-menu a:active {
+#toggle-menu a.active {
     background-color: #3887be;
+    color: #ffffff;
 }
 
 #toggle-menu a.active:hover {

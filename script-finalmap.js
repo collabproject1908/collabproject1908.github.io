@@ -62,8 +62,8 @@ map.on('load', function() {
 			'visibility': 'visible'
 		},
 		'paint': {
-			'fill-color': '#444444',
-			'fill-outline-color': '#444444'
+			'fill-color': 'rgba(242,247,227,0)',
+			'fill-outline-color': '#8e8e8e'
 		}
 	});
 
@@ -78,7 +78,7 @@ map.on('load', function() {
 				'visibility': 'visible'
 		},
 		'paint': {
-				'fill-color': '#af2831',
+				'fill-color': 'rgba(175,40,49,0)',
 				'fill-outline-color': '#af2831'
 		}
 	});
@@ -94,8 +94,7 @@ map.on('load', function() {
 				'visibility': 'visible'
 		},
 		'paint': {
-				'fill-color': '#f2f7e3',
-				'fill-outline-color': '#f2f7e3'
+				'fill-color': '#f2f7e3'
 		}
 	});
 
@@ -140,7 +139,7 @@ map.on('load', function() {
 map.on('click', 'halifax-odb', function (e) {
 	new mapboxgl.Popup()
 		.setLngLat(e.lngLat)
-		.setHTML(e.features[0].properties.OBJECTID)
+		.setHTML('<p>ObjectID: ' + e.features[0].properties.OBJECTID + '</p>')
 		.addTo(map);
 });
 
