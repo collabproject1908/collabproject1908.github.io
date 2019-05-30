@@ -97,7 +97,7 @@ map.on('load', function() { // loads basemap
 				'visibility': 'visible'
 		},
 		'paint': {
-				'fill-color': '#f2f7e3'
+				'fill-color': '#65b7bf'
 		}
 	});
 
