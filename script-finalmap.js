@@ -81,8 +81,8 @@ map.on('load', function() { // loads basemap
 				'visibility': 'visible'
 		},
 		'paint': {
-				'fill-color': 'rgba(37,124,186,0)',
-				'fill-outline-color': '#257cba'
+				'fill-color': 'rgba(226,208,86,0)',
+				'fill-outline-color': '#e2d056'
 		}
 	});
 
