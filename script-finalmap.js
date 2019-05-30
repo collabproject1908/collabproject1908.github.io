@@ -65,8 +65,8 @@ map.on('load', function() { // loads basemap
 			'visibility': 'visible'
 		},
 		'paint': {
-			'fill-color': 'rgba(244,220,66,0)',
-			'fill-outline-color': '#f4dc42'
+			'fill-color': 'rgba(35,141,170,0)',
+			'fill-outline-color': '#238daa'
 		}
 	});
 
@@ -81,8 +81,8 @@ map.on('load', function() { // loads basemap
 				'visibility': 'visible'
 		},
 		'paint': {
-				'fill-color': 'rgba(110,242,33,0)',
-				'fill-outline-color': '#6ef221'
+				'fill-color': 'rgba(37,124,186,0)',
+				'fill-outline-color': '#257cba'
 		}
 	});
 
