@@ -12,31 +12,24 @@ function off() {
 mapboxgl.accessToken = 'pk.eyJ1IjoiY29sbGFicHJvamVjdDE5MDgiLCJhIjoiY2p0ZWdwMjl1MWhsYzQ5bzlvdzBmOW13OCJ9.e9FtSFxY-nswnnCgtFXonA';
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/mapbox/dark-v10', // stylesheet location
-    center: [-63.331663,44.781492],
-    zoom: 8.5
+    style: 'mapbox://styles/collabproject1908/cjwdxm7ft1agp1cl0euo5td3z', // stylesheet location
+    center: [-71.782168,45.684759],
+    zoom: 5
 });
 
 //bounds for the zoom defaults
-//to nova scotia -- want to change to guelph
-document.getElementById('fit-nb').addEventListener('click', function() {
+//to guelph
+document.getElementById('fit-Guelph').addEventListener('click', function() {
 	map.fitBounds([
-		[-66.623242,43.232046],
-		[-59.331133,47.263642]
+		[-80.374954,43.460342],
+		[-80.128757,43.611639]
 	]);
 });
-// to halifax -- can stay as is
-document.getElementById('fit-default').addEventListener('click', function() {
+// to halifax 
+document.getElementById('fit-Halifax').addEventListener('click', function() {
 	map.fitBounds([
 		[-64.278313,44.379177],
 		[-62.106446,45.334063]
-	]);
-});
-// zooms into building levels -- may be removed
-document.getElementById('fit-buildings').addEventListener('click', function() {
-	map.fitBounds([
-		[-63.612531,44.650415],
-		[-63.606300,44.653094]
 	]);
 });
 //sets up the geocoder - sets the extent for the geocoder
@@ -53,25 +46,9 @@ var geocoder = new MapboxGeocoder({
 map.addControl(geocoder); //adds geocoder functionality to the map
 
 map.on('load', function() { // loads basemap
-	
-	map.addLayer({
-		'id': 'halifax-db',  //dissemination block
-		'type': 'fill',
-		'source': {
-			'type': 'geojson',
-			'data': 'Halifax_DB.geojson'
-		},
-		'layout': {
-			'visibility': 'visible'
-		},
-		'paint': {
-			'fill-color': 'rgba(35,141,170,0)',
-			'fill-outline-color': '#238daa'
-		}
-	});
 
 	map.addLayer({
-		'id': 'halifax-da',  //dissemination area
+		'id': 'Dissemination Area',  //dissemination area
 		'type': 'fill',
 		'source': {
 				'type': 'geojson',
@@ -86,8 +63,24 @@ map.on('load', function() { // loads basemap
 		}
 	});
 
+	map.addLayer({
+		'id': 'Dissemination Block',  //dissemination block
+		'type': 'fill',
+		'source': {
+			'type': 'geojson',
+			'data': 'Halifax_DB.geojson'
+		},
+		'layout': {
+			'visibility': 'visible'
+		},
+		'paint': {
+			'fill-color': 'rgba(35,141,170,0)',
+			'fill-outline-color': '#238daa'
+		}
+	});
+
 	map.addLayer({  //adding max and min zoom levels
-		'id': 'halifax-odb',   //buildings
+		'id': 'Building Footprints',   //buildings
 		'type': 'fill',
 		'source': {
 				'type': 'geojson',
@@ -115,7 +108,7 @@ map.on('load', function() { // loads basemap
 		type: 'circle',
 		paint: {
 			'circle-radius': 5,
-			'circle-color': '#448ee4'
+			'circle-color': '#e44a44'
 		}
 	});
 	
@@ -132,10 +125,15 @@ function fit(bbox) {
 
 //https://gis.stackexchange.com/questions/186533/highlight-feature-with-click-in-mapbox-gl
 //variable to hold current zoom level features, currently hard-coded
-var selFeat = 'halifax-odb'; //may need to be coded by zoom number?
 //function selects and highlights a single feature in the current zoom level
+//array holds a list of all of the available layers for zooming
+var zoomlevels = ['Dissemination Area','Dissemination Block','Building Footprints']; //this may be a repeat of toggleablelayers list below...
+//set the index to the default zoom level/active layer. This layer will be selectable.
+var zoomindex = 0;
+
+
 map.on('click', function (e) {
-    var features = map.queryRenderedFeatures(e.point, { layers: [selFeat] });
+    var features = map.queryRenderedFeatures(e.point, { layers: [zoomlevels[zoomindex]] });
 
     if (!features.length) {
         return;
@@ -146,24 +144,28 @@ map.on('click', function (e) {
     }
     var feature = features[0];
     //builds structure for the summary statistics box based on which layer is the active layer
-    if (selFeat == 'halifax-odb') {    
+    if ([zoomlevels[zoomindex]] == 'Building Footprints') {    
     document.getElementById('sumstats').innerHTML = '<div><h3>Summary of Statistics and Data</h3></div><div><h4>Building ID Number</h4></div><div><p id="IDno"></p></div><div><h4>Building Area</h4></div><div><p><span id="area"></span><span> m<sup>2</sup></span></p></div>';
-} else if (selFeat == 'halifax-db') {
+} else if ([zoomlevels[zoomindex]] == 'Dissemination Block') {
     document.getElementById('sumstats').innerHTML = '<div><h3>Summary of Statistics and Data</h3></div><div><h4>Dissemination Block ID</h4></div><div><p id="IDno"></p></div><div><h4>Building Count</h4></div><div><p id="count"></p></div>';} 
-    else if (selFeat == 'halifax-da') {
+    else if ([zoomlevels[zoomindex]] == 'Dissemination Area') {
 document.getElementById('sumstats').innerHTML = '<div><h3>Summary of Statistics and Data</h3></div><div><h4>Dissemination Area ID</h4></div><div><p id="IDno"></p></div><div><h4>Building Count</h4></div><div><p id="count"></p></div><div><h4>Average Building Area</h4></div><div id="avgarea"></div>';};
     //fill the summary statistics box with data based on which layer is the active layer and by referencing attributes in the geojson object selected
-    if (selFeat == 'halifax-odb') {
+    if ([zoomlevels[zoomindex]] == 'Building Footprints') {
     document.getElementById('IDno').innerHTML = feature.properties.Build_ID; //fills the html div with content
     //MUST BE AFTER the var feature declaration
-    document.getElementById('area').innerHTML = feature.properties.Shape_Area;}; //check geojson file for the attributes available
+    document.getElementById('area').innerHTML = feature.properties.Shape_Area;} //check geojson file for the attributes available
+    else if ([zoomlevels[zoomindex]] == 'Dissemination Area') {
+        document.getElementById('IDno').innerHTML = feature.properties.DAUID;
+        
+    }
 
-    console.log(feature.toJSON()); // not sure what this line does but does not impact functionality
+    console.log(feature.toJSON()); // not sure what this line does 
     map.addSource('selectedFeature', {
         "type":"geojson",
         "data": feature.toJSON()
     });
-    map.addLayer({
+    map.addLayer({ //add the selected feature to the map as an additional layer with line styling to highlight it
         "id": "selectedFeature",
         "type": "line",
         "source": "selectedFeature",
@@ -176,17 +178,21 @@ document.getElementById('sumstats').innerHTML = '<div><h3>Summary of Statistics 
             "line-width": 5
         }
     });
-    var bbox = turf.extent(feature);
+
+    if (zoomindex < 2) { //change the value to the index of the odb data in the list
+    var bbox = turf.extent(feature); //sets extent to extent of the feature, but not to the
   fit(bbox);
+        zoomindex += 1;}//changes selectable layer to next smallest geography upon selection (not for odb selection)
+
 });
 
 // Change cursor to a pointer when the mouse is over the building footprints on hover
-map.on('mouseenter', 'halifax-odb', function () {
+map.on('mouseenter', 'Building Footprints', function () {
 	map.getCanvas().style.cursor = 'pointer';
 });
 
 // Change cursor back when it leaves hover
-map.on('mouseleave', 'halifax-odb', function() {
+map.on('mouseleave', 'Building Footprints', function() {
 	map.getCanvas().style.cursor = '';
 });
 
@@ -194,7 +200,7 @@ map.on('mouseleave', 'halifax-odb', function() {
 map.addControl(new mapboxgl.NavigationControl());
 
 // Toggle data layers on and off
-var toggleableLayerIds = ['halifax-db','halifax-da','halifax-odb'];  //links to addLayer above
+var toggleableLayerIds = ['Dissemination Area','Dissemination Block','Building Footprints'];  //links to addLayer above
 
 for (var i=0; i<toggleableLayerIds.length;i++) {
 	var id = toggleableLayerIds[i];
@@ -203,6 +209,54 @@ for (var i=0; i<toggleableLayerIds.length;i++) {
 	link.href = '#';
 	link.className = 'active';
 	link.textContent = id;
+	
+	// var a_id1 = document.getElementsByTagName('a')[0];
+	// var id1 = document.createAttribute('id');
+	// id1.value = 'darea';
+	// a_id1.setAttributeNodeNS(id1);
+
+	// var a_id2 = document.getElementsByTagName('a')[1];
+	// var id2 = document.createAttribute('id');
+	// id2.value = 'dblock';
+	// a_id2.setAttributeNodeNS(id2);
+
+	// var a_id3 = document.getElementsByTagName('a')[2];
+	// var id3 = document.createAttribute('id');
+	// id3.value = 'bfp';
+	// a_id3.setAttributeNodeNS(id3);
+
+	// var darea = document.getElementById('darea');
+	// var darea_att1 = document.createAttribute('data-toggle');
+	// darea_att1.value = 'tooltip';
+	// darea.setAttributeNodeNS(darea_att1);
+	// var darea_att2 = document.createAttribute('data-placement');
+	// darea_att2.value = 'right';
+	// darea.setAttributeNodeNS(darea_att2);
+	// var darea_att3 = document.createAttribute('title');
+	// darea_att3.value = 'Horray!';
+	// darea.setAttributeNodeNS(darea_att3);
+
+	// var dblock = document.getElementById('dblock');
+	// var dblock_att1 = document.createAttribute('data-toggle');
+	// dblock_att1.value = 'tooltip';
+	// dblock.setAttributeNodeNS(dblock_att1);
+	// var dblock_att2 = document.createAttribute('data-placement');
+	// dblock_att2.value = 'right';
+	// dblock.setAttributeNodeNS(dblock_att2);
+	// var dblock_att3 = document.createAttribute('title');
+	// dblock_att3.value = 'Horray!';
+	// dblock.setAttributeNodeNS(dblock_att3);
+	
+	// var bfp = document.getElementById('bfp');
+	// var bfp_att1 = document.createAttribute('data-toggle');
+	// bfp_att1.value = 'tooltip';
+	// bfp.setAttributeNodeNS(bfp_att1);
+	// var bfp_att2 = document.createAttribute('data-placement');
+	// bfp_att2.value = 'right';
+	// bfp.setAttributeNodeNS(bfp_att2);
+	// var bfp_att3 = document.createAttribute('title');
+	// bfp_att3.value = 'Horray!';
+	// bfp.setAttributeNodeNS(bfp_att3);
 
 	link.onclick = function (e) {
 		var clickedLayer = this.textContent;
@@ -223,3 +277,7 @@ for (var i=0; i<toggleableLayerIds.length;i++) {
 	var layers = document.getElementById('toggle-menu');
 	layers.appendChild(link);
 }
+
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+});

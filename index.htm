@@ -7,15 +7,18 @@
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.min.js'></script>
-	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.css' type='text/css' />
-	<script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
-	<link rel='stylesheet' type='text/css' href="style-finalmap.css">
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.2/mapbox-gl-geocoder.css' type='text/css' />
+  <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' type='text/css' href="style-finalmap.css">
 </head>
 <body>
 
 <div id="overlay" onclick="off()">
-	<div id="overlay-text">Welcome to the Developing open data statistics with the Open Database of Buildings - Version 3.0 App</div>
+	<div id="overlay-text">Welcome to the Developing open data statistics with the Open Database of Buildings - Version 4.0 App</div>
 	<div id="overlay-text1">Produced by Vraj Patel,Stephanie Tang, Sarah Gilmour and Zachary Bist at Fleming College in collaboration with Statistics Canada.</div>
 </div>	
 
@@ -32,9 +35,8 @@
 <!-- end of new code -->
 
 <div class='btn-group' style='width:100%'>
-	<button id='fit-nb' style='width:33.3%'>Zoom to Nova Scotia View</button>
-	<button id='fit-default' style='width:33.3%'>Zoom to Default View</button>
-	<button id='fit-buildings' style='width:33.3%'>Zoom to Buildings View</button>
+	<button id='fit-Guelph' style='width:50%'>Zoom to Guelph, Ontario</button>
+	<button id='fit-Halifax' style='width:50%'>Zoom to Halifax, Nova Scotia</button>
 </div>
 
 <nav id="toggle-menu"></nav>
