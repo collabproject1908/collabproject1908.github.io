@@ -18,6 +18,12 @@ var map = new mapboxgl.Map({
 });
 
 //bounds for the zoom defaults
+// zoom to previous extent
+document.getElementById('fit-forward').addEventListener('click', function() {
+	fit(arr[arr.length - 2]);
+	zoomindex -= 1;
+	arr.pop();
+});
 //to guelph
 document.getElementById('fit-Guelph').addEventListener('click', function() {
 	map.fitBounds([
@@ -31,6 +37,10 @@ document.getElementById('fit-Halifax').addEventListener('click', function() {
 		[-64.278313,44.379177],
 		[-62.106446,45.334063]
 	]);
+});
+// makes the previous layer selectable again
+document.getElementById('fit-previous').addEventListener('click', function() {
+	zoomindex -= 1;
 });
 //sets up the geocoder - sets the extent for the geocoder
 var geocoder = new MapboxGeocoder({
@@ -52,7 +62,7 @@ map.on('load', function() { // loads basemap
 		'type': 'fill',
 		'source': {
 				'type': 'geojson',
-				'data': 'Halifax_DA.geojson'
+				'data': 'http://35.182.237.194:8080/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:diss_area&outputFormat=application/json'
 		},
 		'layout': {
 				'visibility': 'visible'
@@ -68,7 +78,7 @@ map.on('load', function() { // loads basemap
 		'type': 'fill',
 		'source': {
 			'type': 'geojson',
-			'data': 'Halifax_DB.geojson'
+			'data': 'http://35.182.237.194:8080/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:diss_block&outputFormat=application/json'
 		},
 		'layout': {
 			'visibility': 'visible'
@@ -84,7 +94,7 @@ map.on('load', function() { // loads basemap
 		'type': 'fill',
 		'source': {
 				'type': 'geojson',
-				'data': 'Halifax_ODB.geojson'
+				'data': 'http://35.182.237.194:8080/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:study_area&outputFormat=application/json'
 		},
 		'layout': {
 				'visibility': 'visible'
@@ -131,6 +141,7 @@ var zoomlevels = ['Dissemination Area','Dissemination Block','Building Footprint
 //set the index to the default zoom level/active layer. This layer will be selectable.
 var zoomindex = 0;
 
+	var arr = [[-64.278313,44.379177, -62.106446,45.334063]];
 
 map.on('click', function (e) {
     var features = map.queryRenderedFeatures(e.point, { layers: [zoomlevels[zoomindex]] });
@@ -183,7 +194,8 @@ document.getElementById('sumstats').innerHTML = '<div><h3>Summary of Statistics 
     var bbox = turf.extent(feature); //sets extent to extent of the feature, but not to the
   fit(bbox);
         zoomindex += 1;}//changes selectable layer to next smallest geography upon selection (not for odb selection)
-
+	arr.push(bbox);
+		console.log(arr);
 });
 
 // Change cursor to a pointer when the mouse is over the building footprints on hover
@@ -202,6 +214,7 @@ map.addControl(new mapboxgl.NavigationControl());
 // Toggle data layers on and off
 var toggleableLayerIds = ['Dissemination Area','Dissemination Block','Building Footprints'];  //links to addLayer above
 
+var layerlabels = ['DA', 'DB', 'ODB'];
 for (var i=0; i<toggleableLayerIds.length;i++) {
 	var id = toggleableLayerIds[i];
 
@@ -209,54 +222,10 @@ for (var i=0; i<toggleableLayerIds.length;i++) {
 	link.href = '#';
 	link.className = 'active';
 	link.textContent = id;
-	
-	// var a_id1 = document.getElementsByTagName('a')[0];
-	// var id1 = document.createAttribute('id');
-	// id1.value = 'darea';
-	// a_id1.setAttributeNodeNS(id1);
-
-	// var a_id2 = document.getElementsByTagName('a')[1];
-	// var id2 = document.createAttribute('id');
-	// id2.value = 'dblock';
-	// a_id2.setAttributeNodeNS(id2);
-
-	// var a_id3 = document.getElementsByTagName('a')[2];
-	// var id3 = document.createAttribute('id');
-	// id3.value = 'bfp';
-	// a_id3.setAttributeNodeNS(id3);
-
-	// var darea = document.getElementById('darea');
-	// var darea_att1 = document.createAttribute('data-toggle');
-	// darea_att1.value = 'tooltip';
-	// darea.setAttributeNodeNS(darea_att1);
-	// var darea_att2 = document.createAttribute('data-placement');
-	// darea_att2.value = 'right';
-	// darea.setAttributeNodeNS(darea_att2);
-	// var darea_att3 = document.createAttribute('title');
-	// darea_att3.value = 'Horray!';
-	// darea.setAttributeNodeNS(darea_att3);
-
-	// var dblock = document.getElementById('dblock');
-	// var dblock_att1 = document.createAttribute('data-toggle');
-	// dblock_att1.value = 'tooltip';
-	// dblock.setAttributeNodeNS(dblock_att1);
-	// var dblock_att2 = document.createAttribute('data-placement');
-	// dblock_att2.value = 'right';
-	// dblock.setAttributeNodeNS(dblock_att2);
-	// var dblock_att3 = document.createAttribute('title');
-	// dblock_att3.value = 'Horray!';
-	// dblock.setAttributeNodeNS(dblock_att3);
-	
-	// var bfp = document.getElementById('bfp');
-	// var bfp_att1 = document.createAttribute('data-toggle');
-	// bfp_att1.value = 'tooltip';
-	// bfp.setAttributeNodeNS(bfp_att1);
-	// var bfp_att2 = document.createAttribute('data-placement');
-	// bfp_att2.value = 'right';
-	// bfp.setAttributeNodeNS(bfp_att2);
-	// var bfp_att3 = document.createAttribute('title');
-	// bfp_att3.value = 'Horray!';
-	// bfp.setAttributeNodeNS(bfp_att3);
+	link.setAttribute("id", id);
+	link.setAttribute("data-original-title", layerlabels[i]);
+	link.setAttribute("data-toggle", "tooltip");
+	link.setAttribute("data-placement", "right");
 
 	link.onclick = function (e) {
 		var clickedLayer = this.textContent;
