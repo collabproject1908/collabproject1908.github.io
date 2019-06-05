@@ -62,7 +62,7 @@ map.on('load', function() { // loads basemap
 		'type': 'fill',
 		'source': {
 				'type': 'geojson',
-				'data': 'https://35.182.237.194/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:diss_area&outputFormat=application/json'
+				'data': 'http://35.182.237.194/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:diss_area&outputFormat=application/json'
 		},
 		'layout': {
 				'visibility': 'visible'
@@ -78,7 +78,7 @@ map.on('load', function() { // loads basemap
 		'type': 'fill',
 		'source': {
 			'type': 'geojson',
-			'data': 'https://35.182.237.194/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:diss_block&outputFormat=application/json'
+			'data': 'http://35.182.237.194/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:diss_block&outputFormat=application/json'
 		},
 		'layout': {
 			'visibility': 'visible'
@@ -94,7 +94,7 @@ map.on('load', function() { // loads basemap
 		'type': 'fill',
 		'source': {
 				'type': 'geojson',
-				'data': 'https://35.182.237.194/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:study_area&outputFormat=application/json'
+				'data': 'http://35.182.237.194/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:study_area&outputFormat=application/json'
 		},
 		'layout': {
 				'visibility': 'visible'
