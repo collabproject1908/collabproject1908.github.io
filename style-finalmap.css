@@ -91,13 +91,32 @@ h2 {
     position:fixed; 
     top:9em; 
     bottom:0; 
-    width:80%;
+    width:64.5%;
     float: left;
 }
 
-#sumstats {
+rect:hover {
+    fill: red;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.highlight:hover {
+    background-color: yellow;
+}
+
+#rightsidebar {
     float: right;
-    width: 19.5%;
+    width: 35%;
 }
 
 .btn-group button {
@@ -162,3 +181,4 @@ h2 {
 #toggle-menu a.active:hover {
     background: #3074a4;
 }
+
