@@ -1,0 +1,168 @@
+/* HTML Full Screen Overlay With Text */
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 20;
+    cursor: pointer;
+}
+#overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    text-align: center;
+}
+#overlay-text1 {
+    font-size: 20px;
+}
+
+/* Header */
+.header {
+    position: relative;
+	padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+}
+
+#fleminglogo {
+    position: relative;
+	float: left;
+	padding-right: 1%;
+	margin: 0;
+	height: 50px;
+}
+
+#cndflag {
+    float: right;
+    display: block;
+    position: relative;
+    height: 50px;
+}
+
+/* Text */
+h1 {
+	color: #444444;
+	font-size: 160%;
+	font-weight: bold;
+	margin-top: 0.5em;
+	margin-bottom: 0.1em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+h2 {
+	color: #696969;
+	font-size: 100%;
+	margin-top: 0;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* Map position */
+#map { 
+    position:fixed; 
+    top:8.35em; /*needs to be set relative to the position of the bottom of the buttons, which changes when the browser is resized, so it needs to do so dynamically*/
+    bottom:0; 
+    width:69.5%;
+    height: 100%;
+    float: left;
+}
+
+/* Charts */
+rect:hover {
+    fill: red;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Summary statistics */
+.highlight:hover {
+    background-color: yellow;
+}
+
+#rightsidebar {
+    float: right;
+    width: 30%;
+}
+
+/* Styling for recommended/default area buttons */
+.btn-group button {
+    background-color: #243e60;
+    border: 1px;
+    color: white;
+    padding: 10px 10px;
+    cursor: pointer;
+    float: left;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 0px;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: 1px solid lightgrey;
+}
+
+.btn-group button:hover {
+    background-color: #1d324d;
+}
+
+/* Toggle Data Layers Buttons Styling */
+#toggle-menu {
+    background: #fff;
+    position: absolute;
+    z-index: 1;
+    top: 120px;
+    left: 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.4);
+    font-family: 'Open Sans', sans-serif;
+}
+
+#toggle-menu a {
+    font-size: 13px;
+    color: #404040;
+    display: block;
+    margin: 0;
+    padding: 0;
+    padding: 10px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+#toggle-menu a:last-child {
+    border: none;
+}
+
+#toggle-menu a:hover {
+    background-color: #f8f8f8;
+    color: #404040;
+}
+
+#toggle-menu a.active {
+    background-color: #3887be;
+    color: #ffffff;
+}
+
+#toggle-menu a.active:hover {
+    background: #3074a4;
+}
