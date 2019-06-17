@@ -98,11 +98,11 @@ document.getElementById('select-bldg').addEventListener('click', function() {
 var geocoder = new MapboxGeocoder({
 	accessToken: mapboxgl.accessToken,
 	placeholder: 'Search',
-	bbox: [-80.331762, 43.465752, -61.458362, 47.101916], 
-	proximity: { // shows only the nearest location with that address to this coordinate
+	bbox: [-80.331762, 43.465752, -61.458362, 47.101916]
+	/* proximity: { // shows only the nearest location with that address to this coordinate
 		longitude: -63.331663,
 		latitude: 44.781492
-	}
+	} */
 }); 
 
 // Creates the control/search bar for the geocoder
