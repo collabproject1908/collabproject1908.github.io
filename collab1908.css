@@ -264,7 +264,7 @@ table h4 {
 	cursor: pointer;
 	color: #595959;
 	font-weight: bold;
-	font-size: var(--font-size-s);
+	/* font-size: var(--font-size-s); */
 	padding: 6px 18px;
 	border-radius: 18px; /* fully round by default */
 	background-color: lightgray;
