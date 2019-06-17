@@ -188,7 +188,7 @@ map.on('load', function() {
 	});
     
     map.addLayer({
-		"id": "Building Area Indicator",
+		"id": "Building Area",
 		"source": "Building Footprints",
 		"type": "fill",
 		"layout": {"visibility": "none"},
@@ -208,7 +208,7 @@ map.on('load', function() {
 	});
     
     map.addLayer({
-		"id": "Proximity to Building Indicator",
+		"id": "Proximity to Building",
 		"source": "Building Footprints",
 		"type": "fill",
 		"layout": {"visibility": "none"},
@@ -228,7 +228,7 @@ map.on('load', function() {
 	});
     
     map.addLayer({
-		"id": "Proximity to Road Indicator",
+		"id": "Proximity to Road",
 		"source": "Building Footprints",
 		"type": "fill",
 		"layout": {"visibility": "none"},
@@ -248,7 +248,7 @@ map.on('load', function() {
 	});
     
     map.addLayer({
-		"id": "Proximity to Water Indicator",
+		"id": "Proximity to Water",
 		"source": "Building Footprints",
 		"type": "fill",
 		"layout": {"visibility": "none"},
@@ -297,7 +297,7 @@ map.on('load', function() {
 // Toggle area - indicator
 
 //List of legends
-var toggleableLayerIds = [ 'Building Area Indicator', 'Proximity to Water Indicator', 'Proximity to Building Indicator', 'Proximity to Road Indicator' ];
+var toggleableLayerIds = [ 'Building Area', 'Proximity to Water', 'Proximity to Building', 'Proximity to Road' ];
     
 //Variables for each legend
 var areaLegend = document.getElementById('area-legend');
@@ -323,34 +323,34 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
 		if (visibility === 'visible') {
 			map.setLayoutProperty(clickedLayer, 'visibility', 'none');
 			this.className = '';
-			if (clickedLayer === 'Building Area Indicator') {
+			if (clickedLayer === 'Building Area') {
 				areaLegend.style.display = 'none';
-			} else if (clickedLayer === 'Proximity to Building Indicator') {
+			} else if (clickedLayer === 'Proximity to Building') {
 				pxBldgLegend.style.display = 'none';
-			} else if (clickedLayer === 'Proximity to Road Indicator') {
+			} else if (clickedLayer === 'Proximity to Road') {
 				pxRdLegend.style.display = 'none';
-            } else if (clickedLayer === 'Proximity to Water Indicator') {
+            } else if (clickedLayer === 'Proximity to Water') {
 				pxWatLegend.style.display = 'none';
             }
 		} else {
 			this.className = 'active';
 			map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-			if (clickedLayer === 'Building Area Indicator') {
+			if (clickedLayer === 'Building Area') {
                 areaLegend.style.display = 'block';
                 pxBldgLegend.style.display = 'none';
                 pxRdLegend.style.display = 'none';
                 pxWatLegend.style.display = 'none';
-			} else if (clickedLayer === 'Proximity to Building Indicator') {
+			} else if (clickedLayer === 'Proximity to Building') {
                 areaLegend.style.display = 'none';
                 pxBldgLegend.style.display = 'block';
                 pxRdLegend.style.display = 'none';
                 pxWatLegend.style.display = 'none';
-			} else if (clickedLayer === 'Proximity to Road Indicator') {
+			} else if (clickedLayer === 'Proximity to Road') {
                 areaLegend.style.display = 'none';
                 pxBldgLegend.style.display = 'none';
                 pxRdLegend.style.display = 'block';
                 pxWatLegend.style.display = 'none';
-            } else if (clickedLayer === 'Proximity to Water Indicator') {
+            } else if (clickedLayer === 'Proximity to Water') {
                 areaLegend.style.display = 'none';
                 pxBldgLegend.style.display = 'none';
                 pxRdLegend.style.display = 'none';
