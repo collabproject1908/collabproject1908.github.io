@@ -23,40 +23,84 @@
 <body>
 
 <div id="overlay" onclick="off()">
-    <div id="overlay-text"><p>Welcome to the Open Database of Buildings Statistics Viewer</p><p>Version 7</p>
-        <p id="overlay-text1">Created by Sarah Gilmour, Vraj Patel, Stephanie Tang, Zach Bist</p></div>
-</div>
-
-<div class='header'>
-	<img id='fleminglogo' src = 'Images/senrslogo.svg' alt = 'Fleming College'>
-	<img id='cndflag' src='Images/Canada-Flag.jpg' alt='Flag of Canada'>
-	<h1>Developing open data statistics with the Open Database of Buildings</h1>
-	<h2>A collaborative project between Fleming College and the Data Integration and Exploration Lab of Statistics Canada</h2>
+    <div id="overlay-text">
+        <p class="welcome">Welcome to the Open Database of Buildings Statistics Viewer</p>
+        <p id="version">Version 8</p>
+        <p id="credits">Created by Sarah Gilmour, Vraj Patel, Stephanie Tang, Zachary Bist</p>
+        <p id="functitle">Project 1908: Developing open data statistics with the Open Database of Buildings</p>
+        <p id="collab">A collaborative project between Fleming College and the Data Integration and Exploration Lab of Statistics Canada</p>
+        <img id='fleminglogo' src = 'Images/senrslogo.svg' alt = 'Fleming College'><!--Fleming College Logo provided by School of Environment and Natural Resource Sciences - Geomatics Divison -->
+        <p id="sourcest">Data from Statistics Canada Open Database of Buildings, 2019 and Statistics Canada Boundary Files, 2018</p>
+        <p>First time visiting? Click <a href="https://35.182.237.194/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:dissarea&outputFormat=application/json" target="_blank">this</a> link and validate the security certificate required to view the data. Click 'Advanced', then 'Proceed'. Return to this tab and refresh the page.</p><!--Note: Update this link if new links are developed to display data.-->
+    </div>
 </div>
 	
 <div class='btn-group' style='width:100%'>
-  <button id='fit-previous' style='width:15%'>Previous Extent</button>
-	<button id='fit-Guelph' style='width:23.3%'>Explore Guelph, Ontario</button>
-    <button id='fit-Fredericton' style='width:23.3%'>Explore Fredericton, New Brunswick</button>
-  <button id='fit-Halifax' style='width:23.3%'>Explore Halifax, Nova Scotia</button>
-  <button id='select-back' style='width:15%'>Back Select Level</button>
+  <button id='fit-previous'>Previous Extent</button>
+	<button id='fit-Guelph'>Explore Guelph, Ontario</button>
+  <button id='fit-Fredericton'>Explore Fredericton, New Brunswick</button>
+  <button id='fit-Halifax'>Explore Halifax, Nova Scotia</button>
+  <button id='select-bldg'>Begin Inspecting Buildings</button>
 </div>
 
 <nav id="toggle-menu"></nav>
 
+<div id='toggle-group'>
+	<div id='toggle'></div>
+</div>
+    <!-- <div> -->
 <div id='map'></div>
-
+    
+<div id='area-legend' class='legend' style='display: none;'>
+<h4>Building Shape Area</h4>
+<div><span style='background-color: #ffffd4'></span>0-50 m<sup>2</sup></div>
+<div><span style='background-color: #fed98e'></span>50-125 m<sup>2</sup></div>
+<div><span style='background-color: #fe9929'></span>125-300 m<sup>2</sup></div>
+<div><span style='background-color: #d95f0e'></span>300-1500 m<sup>2</sup></div>
+<div><span style='background-color: #993404'></span>1500+ m<sup>2</sup></div>
+</div>
+        
+<div id='bldg-legend' class='legend' style='display: none;'>
+<h4>Proximity to Closest Building</h4>
+<div><span style='background-color: #ffffd4'></span>0 m</div>
+<div><span style='background-color: #fed98e'></span>1-10 m</div>
+<div><span style='background-color: #fe9929'></span>10-30 m</div>
+<div><span style='background-color: #d95f0e'></span>30-100 m</div>
+<div><span style='background-color: #993404'></span>100+ m</div>
+</div>
+        
+<div id='wat-legend' class='legend' style='display: none;'>
+<h4>Proximity to Closest Water Feature</h4>
+<div><span style='background-color: #ffffd4'></span>0-300 m</div>
+<div><span style='background-color: #fed98e'></span>300-650 m</div>
+<div><span style='background-color: #fe9929'></span>650-1250 m</div>
+<div><span style='background-color: #d95f0e'></span>1250-3000 m</div>
+<div><span style='background-color: #993404'></span>3000+ m</div>
+</div>
+        
+<div id='rd-legend' class='legend' style='display: none;'>
+<h4>Proximity to Closest Road</h4>
+<div><span style='background-color: #ffffd4'></span>0-5 m</div>
+<div><span style='background-color: #fed98e'></span>5-20 m</div>
+<div><span style='background-color: #fe9929'></span>20-100 m</div>
+<div><span style='background-color: #d95f0e'></span>100-1000 m</div>
+<div><span style='background-color: #993404'></span>1000+ m</div>
+</div>
 <!-- This right side bar gets replaced with Summary Statistics Tables and placeholders for charts once selections are made. -->
-<div id='rightsidebar'><div id='sumstats'><h3>Welcome!</h3><div id="home">Click through the map layers to highlight areas and discover statistics and data about buildings in Canada.
-    <ul>
-        <li>Use the previous extent button to move back to the view provided by the previous selection. Note: This does not move through the previous data of the ODB. It will not reselect a previously selected building.</li>
-        <li>Select buildings to receive updated statistics for the updated selection. Using the previous extent button after multiple building selections will still select the extent of the previous dissemination block as the extent is not changed between the odb layers and the dissemination block layers. </li>
-        <li>The application does not zoom into the view of the buiding.</li>
-        <li>You can use the Back previous level button to toggle the selection level up to one level per click. This is likely to give unexpected result for a much larger geography than is accommodated by the current extent/view of the map. Manually zoom out enough to improve the selection accuracy.</li>
-        <li>Statistics and Data will be updated correctly for the full selection, even if the highlighted area is unexpected. </li>
-        <li>Click back to default view button for area (eg. Zoom to Halifax, Nova Scotia) to restore all default settings.</li>
-    </ul>
+<div id='rightsidebar'><div id='sumstats'><h3>Welcome!</h3><div id="home">Click through the map layers to highlight areas and discover statistics and data about buildings in Canada. To begin, zoom into a city by clicking one of three "Explore (area)" buttons.
+
+<ul>
+	<li>The buttons at the top of the map are zooming features.</li>
+	<li>Use the previous extent button to move previous selected view. Note: This does not move through the previous data of the ODB and will not reselect a previously selected building.</li>
+	<li>The back previous level button can bring the view one selection level up per click. This is likely to give unexpected result for a much larger geography than is accommodated by the current extent/view of the map. Manually zoom out enough to improve the selection accuracy.</li>
+	<li>The buttons on the left hand side of the map are used to toggle the layers of the map. There are three main layers displayed in order of largest to smallest geography: Dissemination Area, Dissemination Block, and Building Footprints.</li>
+	<li>Select buildings to receive updated statistics for the updated selection. Using the previous extent button after multiple building selections will still select the extent of the previous dissemination block as the extent is not changed between the ODB layers and the dissemination block layers. </li>
+	<li>The application does not zoom into the view of the building.</li>
+	<li>Statistics and Data will be updated correctly for the full selection, even if the highlighted area is unexpected. </li>
+	<li>Click back to default view button for area (eg. Zoom to Halifax, Nova Scotia) to restore all default settings .</li>
+</ul>
 </div></div></div>
+    <!-- </div> -->
 
 <script src="collab1908.js"></script>
 

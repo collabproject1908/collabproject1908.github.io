@@ -7,74 +7,58 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,.8);
     z-index: 20;
     cursor: pointer;
 }
+
+a {
+    text-decoration: underline;
+    color: #4d76b7;
+}
+
 #overlay-text {
     position: absolute;
     top: 50%;
     left: 50%;
-    font-size: 30px;
-    color: white;
+    color: #e0ecff;
     transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
     text-align: center;
 }
 #overlay-text1 {
     font-size: 20px;
 }
 
-/* Header */
-.header {
-    position: relative;
-	padding-left: 1%;
-    padding-right: 1%;
-    text-align: center;
-}
-
 #fleminglogo {
     position: relative;
-	float: left;
 	padding-right: 1%;
 	margin: 0;
-    height: 50px;
-    transform: translateY(-10%);
+	width: 100%;
+    max-width: 250px;
+    padding-top: 1em;
+    padding-bottom: 2em;
 }
 
-#cndflag {
-    float: right;
-    display: block;
-    position: relative;
-    height: 50px;
-    transform: translateY(-10%);
+#sourcest {
+    font-size: 0.8em;
 }
 
 /* Text */
-h1 {
-	color: #444444;
-	font-size: 160%;
-	font-weight: bold;
-	margin-top: 0.5em;
-	margin-bottom: 0.1em;
-	margin-left: 0;
-	margin-right: 0;
+.welcome {
+    font-size: 2.5em;
 }
 
-h2 {
-	color: #696969;
-	font-size: 100%;
-	margin-top: 0;
-	margin-bottom: 0.5em;
-	margin-left: 0;
-	margin-right: 0;
+#version, #collab{
+    font-size: 1.2em;
+}
+
+#credits, #functitle{
+    font-size: 1.8em;
 }
 
 /* Map position */
 #map { 
-    position:fixed; 
-    top:8.35em; /*needs to be set relative to the position of the bottom of the buttons, which changes when the browser is resized, so it needs to do so dynamically*/
-    bottom:0; 
+    position: absolute; 
     width:69.5%;
     height: 100%;
     float: left;
@@ -88,12 +72,14 @@ rect:hover {
 div.tooltip {
     position: absolute;
     text-align: center;
-    padding: 2px;
+    padding: 0px;
     font: 12px sans-serif;
-    background: lightsteelblue;
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
+    z-index: 99;
+    display: contents;
+    width: 650px;
 }
 
 /* Summary statistics */
@@ -115,8 +101,69 @@ div.tooltip {
     cursor: pointer;
     float: left;
     position: relative;
-    z-index: 10;
     margin-bottom: 0px;
+    z-index: 1;
+    display: block;
+}
+
+#fit-Guelph, #fit-Halifax, #fit-Fredericton {
+    width: 23.3%;
+}
+
+#fit-previous, #select-bldg {
+    width: 15%;
+}
+
+/* When screen is smaller than 900px */
+@media screen and (max-width: 900px) {
+	.btn-group button {
+		background-color: #243e60;
+		border: 1px;
+		color: white;
+		padding: 10px 24px;
+		cursor: pointer;
+		float: none;
+		display: block;
+		width: 100%;
+	}
+	.btn-group:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+    #fit-Guelph, #fit-Halifax, #fit-Fredericton {
+        width: 100%;
+    }
+
+    #fit-previous, #select-bldg {
+        width: 100%;
+}
+}
+
+/* When screen is smaller than 400px */
+@media screen and (max-width: 400px) {
+	.btn-group button {
+		background-color: #243e60;
+		border: 1px;
+		color: white;
+		padding: 10px 24px;
+		cursor: pointer;
+		float: none;
+		display: block;
+		width: 100%;
+	}
+	.btn-group:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+    #fit-Guelph, #fit-Halifax, #fit-Fredericton {
+        width: 100%;
+    }
+
+    #fit-previous, #select-bldg {
+        width: 100%;
+}
 }
 
 .btn-group button:not(:last-child) {
@@ -164,7 +211,104 @@ div.tooltip {
     background-color: #3887be;
     color: #ffffff;
 }
+.sumstats {
+    margin-right: 8px;
+    
+}
 
 #toggle-menu a.active:hover {
     background: #3074a4;
+}
+
+/* Styling for Summary Statistics Table */
+/* based on tables at https://www.w3schools.com/css/css_table.asp */
+table {
+  font-family: 'Open Sans', sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+
+table td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table th {
+    font-weight: normal;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table h4 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: #243e60;
+}
+
+/* Toggle buttons for indicators */
+#toggle-group {
+	position: absolute;
+	display: inline-flex;
+	text-align: center;
+	border-radius: 18px;
+	padding: 10px;
+	z-index: 1;
+}
+
+#toggle b{
+	flex-shrink: 0;
+	cursor: pointer;
+	color: #595959;
+	font-weight: bold;
+	font-size: var(--font-size-s);
+	padding: 6px 18px;
+	border-radius: 18px; /* fully round by default */
+	background-color: lightgray;
+}
+
+#toggle b:last-child {
+	border:none;
+}
+
+#toggle b:hover {
+	background-color: yellow;
+	color: black;
+}
+
+#toggle b.active {
+	background-color: black;
+	color: white;
+}
+
+#toggle b.active:hover {
+	background-color: #243e60;
+	color: white;
+}
+
+.legend {
+	background-color: #fff;
+	border-radius: 3px;
+	bottom: 30px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	padding: 10px;
+	position: absolute;
+	right: 31%;
+	z-index: 1;
+}
+
+.legend h4 {
+	margin: 0 0 10px;
+}
+ 
+.legend div span {
+	border-radius: 50%;
+	display: inline-block;
+	height: 10px;
+	margin-right: 5px;
+	width: 10px;
 }
