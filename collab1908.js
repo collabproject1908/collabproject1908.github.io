@@ -98,7 +98,7 @@ document.getElementById('select-bldg').addEventListener('click', function() {
 var geocoder = new MapboxGeocoder({
 	accessToken: mapboxgl.accessToken,
 	placeholder: 'Search',
-	bbox: [-64.318199, 44.400115, -62.177113, 45.323049], // This needs to be updated based on the area that is selected from the defaults
+	bbox: [-80.331762, 43.465752, -61.458362, 47.101916], 
 	proximity: { // shows only the nearest location with that address to this coordinate
 		longitude: -63.331663,
 		latitude: 44.781492
