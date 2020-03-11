@@ -127,7 +127,7 @@ map.on('load', function() {
         'type': 'fill',
         'source': {
                 'type': 'geojson',
-                'data': 'https://35.182.237.194:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:dissarea&outputFormat=application/json'
+                'data': 'https://35.183.123.93:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:dissarea&outputFormat=application/json'
         },
         'layout': {
                 'visibility': 'visible'
@@ -143,7 +143,7 @@ map.on('load', function() {
 		'type': 'fill',
 		'source': {
 			'type': 'geojson',
-			'data': 'https://35.182.237.194:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:dissblock&outputFormat=application/json'
+			'data': 'https://35.183.123.93:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:dissblock&outputFormat=application/json'
 		},
 		'layout': {
 			'visibility': 'visible'
@@ -159,7 +159,7 @@ map.on('load', function() {
 		'type': 'fill',
 		'source': {
 				'type': 'geojson',
-				'data': 'https://35.182.237.194:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:dissarea&outputFormat=application/json'
+				'data': 'https://35.183.123.93:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:dissarea&outputFormat=application/json'
 		},
 		'layout': {
 				'visibility': 'visible'
@@ -176,7 +176,7 @@ map.on('load', function() {
 		"type": "fill",
 		"source": {
 				'type': 'geojson',
-				'data': "https://35.182.237.194:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:footprint&outputFormat=application/json"
+				'data': "https://35.183.123.93:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:footprint&outputFormat=application/json"
 		}
         ,
 		"layout": {
