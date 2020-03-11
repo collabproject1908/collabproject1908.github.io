@@ -118,7 +118,7 @@ var clickedLayer = "Building Footprints";
 map.on('load', function() { 
   /*  map.addSource("footprint", {
 		"type": "geojson",
-		"data": "https://35.182.237.194:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:footprint&outputFormat=application/json"
+		"data": "https://35.183.123.93:443/geoserver/openstatstest/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=openstatstest:footprint&outputFormat=application/json"
 	});
 */
 
